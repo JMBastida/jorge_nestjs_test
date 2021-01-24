@@ -14,13 +14,16 @@ You need to build using NestJS a basic graphql API to manage time records. (Only
 ### Questions
 
   - How much time did you spend? (😱 real!! We would like to know if you can work under-pressure) 
-  > About 3 hours, I've needed to think well how to proceed, the first rule was the problematic one.
+  > About 3-4 hours, easy to find way to proceed but big trouble with moongose package 🤯 
+  
   - Difficulties that you found in the task?
   > Not clear at all the description of the rules(Be creative!! 🎨) 🤣
 
-  > Tons of ways of structuring the project, basic way is not the one im not use to.
+  >I get in trouble using mongo because using "moongose" package... not used to using this package, I use npm i mongodb
 
-  > Choosing WebSockets instead of SSE (event source) because finally the last one need an starting "get" when client app inits so the WebSocket was more adapted to the rule however a simple ping or the mentioned SSE is way better
+  > Rusty with graphql structurinng. 
+
+  > I've started with SSE (event source) but then i realise i need a ping call when client app inits so the WebSocket was more adapted to the rule however a simple ping or the mentioned SSE is way better
 
 ### License
 

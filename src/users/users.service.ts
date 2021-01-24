@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, ObjectId } from 'mongoose';
+import { time } from 'console';
+import { isValidObjectId, Model, ObjectId } from 'mongoose';
 import { UpdateRecordDTO } from './models/updateRecords.dto';
 import { User } from './models/user-view.model';
 
@@ -54,11 +55,18 @@ export class UsersService {
   }
 
   async update(id: string, user: UpdateRecordDTO): Promise<any> {
-    const currentDay = new Date();
-    const times = {
-      date: currentDay.toDateString(),
-      timeRecords: [{ online: user.initTime, offline: user.finishTime }],
-    };
-    return await this.userModel.updateOne({ _id: id }, { $set: times });
+    const offsetTime = new Date(user.initTime).getTime();
+    const limitTime = new Date(user.finishTime).getTime();
+    console.log(id);
+    const times = { online: user.initTime, offline: user.finishTime };
+    /*const createdItem = new this.userModel(user);
+    await createdItem.save();*/
+    // Type 'number' is not assignable to type 'never'. moongose model error i need to create interface extending of Document
+    return await this.userModel.updateOne(
+      { clientId: id },
+      {
+        $push: { timeRecords: { online: offsetTime, offline: limitTime } },
+      },
+    );
   }
 }
