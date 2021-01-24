@@ -1,4 +1,8 @@
 # Jorge Nest Test
+![Alt text](https://user-images.githubusercontent.com/43676321/105638478-1adeef80-5e73-11eb-834d-c7a46a4cce92.png "example data")
+![Alt text](https://user-images.githubusercontent.com/43676321/105638491-27fbde80-5e73-11eb-92a4-1d9366da0cd0.png "Extended Date")
+![Alt text](https://user-images.githubusercontent.com/43676321/105638497-2cc09280-5e73-11eb-852f-0e4ab672004f.png "Shorter Date")
+
 
 ## Description
 
