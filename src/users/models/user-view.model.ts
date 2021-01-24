@@ -2,20 +2,15 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class User {
-  @Field(() => ID)
+  @Field()
   readonly id?: string;
+  @Field()
+  readonly clientId: string;
   @Field(() => [TimeRecords])
   readonly timeRecords: TimeRecords[];
 }
 @ObjectType()
 class TimeRecords {
-  @Field()
-  date: Date;
-  @Field(() => [Times])
-  timeRecords: Times[];
-}
-@ObjectType()
-class Times {
   @Field()
   online: Date;
   @Field()

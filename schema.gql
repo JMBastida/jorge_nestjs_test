@@ -2,35 +2,32 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type UpdateRecordDTO {
+  clientId: ID!
+  initTime: DateTime!
+  finishTime: DateTime!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 scalar Date
 
-type UpdateRecordDTO {
-  id: ID!
-  initTime: DateTime!
-  finishTime: DateTime!
-}
-
 type User {
-  id: ID!
-  timeRecords: [TimeRecords!]!
+  _id: String
+  clientId: String
+  timeRecords: [TimeRecords!]
 }
 
 type TimeRecords {
-  date: DateTime!
-  timeRecords: [Times!]!
-}
-
-type Times {
   online: DateTime!
   offline: DateTime!
 }
 
 type Query {
-  items: [User!]!
+  users: [User!]!
+  user(limitDate: DateTime!, offsetDate: DateTime!, _id: String!): [User]
 }
 
 type Mutation {

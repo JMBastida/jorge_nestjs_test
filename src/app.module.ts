@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
-import { AppGateway } from './app.gateway';
 import { config } from './config';
 import { GraphModule } from './graph-module/graph.module';
 import { UsersModule } from './users/users.module';
@@ -13,6 +12,6 @@ import { UsersModule } from './users/users.module';
     MongooseModule.forRoot(config.MONGODB_URI),
   ],
   controllers: [AppController],
-  providers: [AppGateway],
+  providers: [],
 })
 export class AppModule {}

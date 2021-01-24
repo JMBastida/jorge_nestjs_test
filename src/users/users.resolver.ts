@@ -9,8 +9,17 @@ export class UsersResolver {
   constructor(private readonly userService: UsersService) {}
 
   @Query(() => [User])
-  async items(): Promise<User[]> {
+  async users(): Promise<User[]> {
     return this.userService.findAll();
+  }
+
+  @Query(() => User)
+  async user(
+    @Args('_id') id: string,
+    @Args('offsetDate') offsetDate: Date,
+    @Args('limitDate') limitDate: Date,
+  ): Promise<User> {
+    return this.userService.findOne(id, offsetDate, limitDate);
   }
 
   @Mutation(() => UpdateRecordDTO)
@@ -19,7 +28,7 @@ export class UsersResolver {
     @Args('input') input: UpdateUserInput,
   ): Promise<UpdateUserInput> {
     const user = {
-      id: id,
+      clientId: id,
       online: [
         { timestampOnline: input.initTime, timestampOffline: input.finishTime },
       ],

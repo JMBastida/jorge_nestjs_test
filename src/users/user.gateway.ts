@@ -7,6 +7,7 @@ import {
   WsResponse,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { UsersService } from './users.service';
 
 /*
     WebSockets option for achiving first rule where no api calls for getting user status are permitted.
@@ -15,18 +16,26 @@ import { Server, Socket } from 'socket.io';
 */
 
 @WebSocketGateway()
-export class AppGateway
+export class UserGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor(/*private logger: Logger*/) {}
-  private logger: Logger = new Logger('AppGateway');
+  constructor(private userService: UsersService) {}
+  private logger: Logger = new Logger('UserGateway');
+  online: Date;
+  offline: Date;
 
   handleConnection(client: Socket, ...args: any[]) {
     this.logger.log(`Connected: ${client.id}`);
+    this.online = new Date();
   }
 
   handleDisconnect(client: Socket) {
     this.logger.log(`Diconnected: ${client.id}`);
+    this.offline = new Date();
+    this.userService.update(client.id, {
+      initTime: this.online,
+      finishTime: this.offline,
+    });
   }
 
   afterInit(server: Server) {
